@@ -1,0 +1,71 @@
+:root {
+  /* Color scheme */
+  --color-primary: #4A2518;
+  --color-primary-rgb: 74, 37, 24;
+  --color-primary-dark: #341A11;
+  --color-primary-light: #6B3623;
+  
+  --color-accent: #D4A574;
+  --color-accent-rgb: 212, 165, 116;
+  --color-accent-dark: #B88B5F;
+  --color-accent-light: #E5C4A1;
+  
+  --color-text: #2D2D2D;
+  --color-text-light: #6E6E6E;
+  --color-text-inverse: #FFFFFF;
+  
+  --color-background: #F8F5F2;
+  --color-background-alt: #FFFFFF;
+  
+  --color-border: #E8E8E8;
+  --color-border-dark: #D1D1D1;
+  
+  --color-success: #4CAF50;
+  --color-warning: #FF9800;
+  --color-error: #F44336;
+  
+  /* Typography */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Montserrat', var(--font-primary);
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+  
+  /* Shadow effects */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  --shadow-md: 0 3px 6px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.12);
+  --shadow-lg: 0 10px 20px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.1);
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* Layout */
+  --container-padding: 1rem;
+  --container-max-width: 1200px;
+  --header-height: 64px;
+  --footer-height: 120px;
+  
+  /* Z-index layers */
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-modal: 300;
+  --z-toast: 400;
+  
+  /* Grid breakpoints */
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+}

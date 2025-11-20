@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KOU COFE — Tienda</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fdfdfc;
+      --text: #222;
+      --accent: #3b2f2f;
+      --accent-light: #c9a27b;
+      --border: #ddd;
+      --font-title: 'Montserrat', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--accent);
+      color: #fff;
+      padding: 1rem 2rem;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a:hover { color: var(--accent-light); }
+
+    .cart {
+      position: relative;
+    }
+
+    .cart-link {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
+
+    #cart-count {
+      background: var(--accent-light);
+      color: #fff;
+      border-radius: 50%;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.8rem;
+      position: absolute;
+      top: -10px;
+      right: -15px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: var(--font-title);
+      color: var(--accent);
+      margin-bottom: 2rem;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .categories button {
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-family: var(--font-title);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .categories button:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.02);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-info h3 {
+      margin: 0;
+      font-family: var(--font-title);
+      color: var(--accent);
+    }
+
+    .product-info p {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0.5rem 0;
+    }
+
+    .price {
+      font-weight: bold;
+      color: var(--accent-light);
+      font-size: 1.1rem;
+    }
+
+    .add-to-cart {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0 0 15px 15px;
+      padding: 1rem;
+      cursor: pointer;
+      font-family: var(--font-title);
+      transition: background 0.3s;
+    }
+
+    .add-to-cart:hover {
+      background: var(--accent-light);
+    }
+
+    footer {
+      background: #111;
+      color: #eee;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">KOU COFE</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="historial.html">Historial</a></li>
+      </ul>
+    </nav>
+    <div class="cart">
+      <a href="carrito.html" class="cart-link" aria-label="Ir al carrito">
+        🛒 <span id="cart-count">0</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Tienda de Café</h1>
+
+    <div class="categories">
+      <button onclick="filterCategory('Todos')">Todos</button>
+      <button onclick="filterCategory('Café en Grano')">Café en Grano</button>
+      <button onclick="filterCategory('Métodos')">Métodos</button>
+      <button onclick="filterCategory('Molinos')">Molinos</button>
+      <button onclick="filterCategory('Accesorios')">Accesorios</button>
+    </div>
+
+    <div id="products-grid" class="products-grid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-sections">
+        <div class="footer-col">
+          <h3><i class="fas fa-mug-hot"></i> KOU COFE</h3>
+          <p>El arte del café en tus manos</p>
+          <div class="social-icons">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3><i class="fas fa-map-marker-alt"></i> Ubicación</h3>
+          <p>Calle Principal #123</p>
+          <p>Ciudad, País</p>
+          <p><i class="fas fa-phone"></i> +123 456 789</p>
+        </div>
+        <div class="footer-col">
+          <h3><i class="far fa-clock"></i> Horario</h3>
+          <p>Lunes - Viernes: 7:00 - 20:00</p>
+          <p>Sábado - Domingo: 8:00 - 19:00</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year2"></span> KOU COFE. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      { 
+    id: 1, 
+    name: "Café Arábica Premium", 
+    category: "Café en Grano", 
+    price: 25, 
+    description: "Granos seleccionados de altura, tueste medio con notas a chocolate y frutos rojos.", 
+    image: "https://images.unsplash.com/photo-1610632380989-680fe40816c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"},
+    { 
+    id: 2, 
+    name: "Café Blend Espresso", 
+    category: "Café en Grano", 
+    price: 22, 
+    description: "Ideal para espresso y cappuccino, tueste oscuro con cuerpo intenso.", 
+    image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"},
+    { 
+    id: 3, 
+    name: "Prensa Francesa", 
+    category: "Métodos", 
+    price: 35, 
+    description: "Método clásico para extraer sabores intensos. Capacidad 600ml.", 
+    image: "https://th.bing.com/th/id/R.10639228b6229339d491fae0eb28a96a?rik=IYo2n0tNhF6srA&riu=http%3a%2f%2fwww.tiendacopec.cl%2fcdn%2fshop%2ffiles%2f717370.jpg%3fv%3d1727637130&ehk=z1vwC2xSWyovkyDny0LzEF1Ur%2b9fuQK7Z3%2fO4MrboJM%3d&risl=&pid=ImgRaw&r=0"},
+    { 
+    id: 4, 
+    name: "V60 de Cerámica", 
+    category: "Métodos", 
+    price: 28, 
+    description: "Extracción limpia con diseño elegante. Para un café brillante y aromático.", 
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"},
+    { 
+    id: 5, 
+    name: "Molino Manual Vintage", 
+    category: "Molinos", 
+    price: 45, 
+    description: "Cuerpo metálico y ajuste de molienda. Perfecto para viajes.", 
+    image: "https://cdn.shopify.com/s/files/1/0483/6999/1837/products/WhatsAppImage2021-03-09at16.16.57_3.jpg?v=1664471181"},
+    { 
+    id: 6, 
+    name: "Molino Eléctrico Compacto", 
+    category: "Molinos", 
+    price: 80, 
+    description: "Rápido, preciso y silencioso. 15 niveles de molienda.", 
+    image: "https://tse3.mm.bing.net/th/id/OIP.lKeEpdoz7H-1JUDF2Rx1hgHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    { 
+    id: 7, 
+    name: "Pitcher de Acero 600ml", 
+    category: "Accesorios", 
+    price: 20, 
+    description: "Perfecto para arte latte. Acero inoxidable de alta calidad.", 
+    image: "https://cdn.gethypervisual.com/images/shopify/523ba456-6e21-4d53-a0cf-6b0ba79812e4/w1200_316d_shadow_3.jpg"},
+    { 
+    id: 8, 
+    name: "Balanza Barista Pro", 
+    category: "Accesorios", 
+    price: 50, 
+    description: "Precisión para tus preparaciones. Con timer integrado.", 
+    image: "https://tse1.mm.bing.net/th/id/OIP.YkUILQ_rvhmvW2t_yDU3qgHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    { 
+    id: 9, 
+    name: "Set de Tazas Artesanales", 
+    category: "Accesorios", 
+    price: 32, 
+    description: "Set de 2 tazas de cerámica artesanal para espresso o cappuccino.", 
+    image: "https://tse1.mm.bing.net/th/id/OIP.8yomU7Md9Cwwaf_gX8FtCQHaDt?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {
+    id: 10,
+    name: "Café Etíope Yirgacheffe",
+    category: "Café en Grano",
+    price: 28,
+    description: "Notas florales y cítricas, con un toque de jazmín y bergamota.",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"},
+    {
+    id: 11,
+    name: "Chemex Clásica",
+    category: "Métodos",
+    price: 42,
+    description: "Método de preparación que resalta la claridad y pureza del café.",
+    image: "https://th.bing.com/th/id/R.10813bfddcf20373762ed3245c0365bf?rik=NPu%2fBVTwWqUALw&pid=ImgRaw&r=0"},
+    {
+    id: 12,
+    name: "Kit Barista Profesional",
+    category: "Accesorios",
+    price: 75,
+    description: "Set completo con tamper, distribuidor y cepillo de limpieza.",
+    image: "https://tse3.mm.bing.net/th/id/OIP.uiGZV2IURaqpAVQ2WeuzgQHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {
+    id: 13,
+    name: "Café Colombiano Supremo",
+    category: "Café en Grano",
+    price: 26,
+    description: "Sabor equilibrado con notas a caramelo y nueces tostadas.",
+    image: "https://tse3.mm.bing.net/th/id/OIP.VfQ0cHKIvpJ8E5ULmsPUtQHaE7?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"},
+    {
+    id: 14,
+    name: "Aeropress Go",
+    category: "Métodos",
+    price: 38,
+    description: "Sistema portátil para preparar café de alta calidad en cualquier lugar.",
+    image: "https://tse3.mm.bing.net/th/id/OIP.QR-a4PQrZxTKJjdgVYNxDwHaH5?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"}
+  ];
+
+
+    const grid = document.getElementById('products-grid');
+    const cartCount = document.getElementById('cart-count');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    cartCount.textContent = cart.length;
+
+    function renderProducts(items) {
+      grid.innerHTML = items.map(p => `
+        <div class="product-card">
+          <img src="${p.image}" alt="${p.name}">
+          <div class="product-info">
+            <h3>${p.name}</h3>
+            <p>${p.description}</p>
+            <div class="price">$${p.price.toFixed(2)}</div>
+          </div>
+          <button class="add-to-cart" onclick="addToCart(${p.id})">Añadir al carrito</button>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(id) {
+      const item = products.find(p => p.id === id);
+      cart.push(item);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      cartCount.textContent = cart.length;
+      alert(`"${item.name}" se añadió al carrito 🛒`);
+    }
+
+    function filterCategory(cat) {
+      if (cat === 'Todos') {
+        renderProducts(products);
+      } else {
+        renderProducts(products.filter(p => p.category === cat));
+      }
+    }
+
+    renderProducts(products);
+    document.getElementById('year2').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

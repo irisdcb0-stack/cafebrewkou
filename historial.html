@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KOU COFE — Historial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fdfdfc;
+      color: #222;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #3b2f2f;
+      color: #fff;
+      padding: 1rem 2rem;
+    }
+
+    header a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #3b2f2f;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    select, input[type="date"] {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .orders-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .order {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    .order h3 {
+      margin-top: 0;
+      color: #3b2f2f;
+    }
+
+    .order p {
+      margin: 0.3rem 0;
+    }
+
+    .order .status {
+      font-weight: bold;
+    }
+
+    footer {
+      background: #111;
+      color: #eee;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">KOU COFE</a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="historial.html">Historial</a></li>
+      </ul>
+    </nav>
+    <a href="carrito.html">🛒</a>
+  </header>
+
+  <main>
+    <h2>Historial de Pedidos</h2>
+
+    <section class="filters">
+      <select id="status-filter">
+        <option value="">Todos los estados</option>
+        <option value="Pendiente">Pendiente</option>
+        <option value="En camino">En camino</option>
+        <option value="Entregado">Entregado</option>
+      </select>
+      <input id="date-filter" type="date">
+    </section>
+
+    <section id="orders-list" class="orders-list">
+      <!-- Aquí se cargan los pedidos -->
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> KOU COFE — El arte del café en tus manos ☕
+  </footer>
+
+  <script>
+    // Obtener pedidos guardados
+    const ordersList = document.getElementById('orders-list');
+    const statusFilter = document.getElementById('status-filter');
+    const dateFilter = document.getElementById('date-filter');
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    function renderOrders() {
+      const statusValue = statusFilter.value;
+      const dateValue = dateFilter.value;
+      ordersList.innerHTML = "";
+
+      let filtered = orders.filter(order => {
+        let matchStatus = statusValue ? order.status === statusValue : true;
+        let matchDate = dateValue ? order.date.startsWith(dateValue) : true;
+        return matchStatus && matchDate;
+      });
+
+      if (filtered.length === 0) {
+        ordersList.innerHTML = "<p style='text-align:center;'>No hay pedidos registrados.</p>";
+        return;
+      }
+
+      filtered.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order";
+        div.innerHTML = `
+          <h3>Pedido #${order.id}</h3>
+          <p><strong>Fecha:</strong> ${order.date}</p>
+          <p><strong>Productos:</strong></p>
+          <ul>${order.items.map(i => `<li>${i.name} - $${i.price}</li>`).join("")}</ul>
+          <p><strong>Total:</strong> $${order.total}</p>
+          <p class="status">Estado: ${order.status}</p>
+        `;
+        ordersList.appendChild(div);
+      });
+    }
+
+    // Filtros activos
+    statusFilter.addEventListener("change", renderOrders);
+    dateFilter.addEventListener("change", renderOrders);
+
+    // Fecha del footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mostrar pedidos
+    renderOrders();
+  </script>
+</body>
+</html>

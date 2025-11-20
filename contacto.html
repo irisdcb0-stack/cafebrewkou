@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOU COFE — Contacto</title>
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="brand"><a href="index.html">KOU COFE</a></div>
+    <nav class="nav">
+      <button class="nav-toggle" aria-label="Abrir menú">☰</button>
+      <ul class="nav-list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="tienda.html">Tienda</a></li>
+        <li><a href="historial.html">Historial</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="cart-link" href="carrito.html" aria-label="Carrito">
+      🛒 <span id="cart-count">0</span>
+    </a>
+  </header>
+
+
+  <!-- Fondo visual y tarjeta central -->
+  <main style="min-height: 100vh; background: linear-gradient(rgba(30,30,30,0.7),rgba(30,30,30,0.7)), url('https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; display: flex; align-items: center; justify-content: center; padding: 40px 0;">
+    <div style="background: #fff; border-radius: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.18); max-width: 900px; width: 100%; display: flex; flex-wrap: wrap; overflow: hidden;">
+      <!-- Información de contacto -->
+      <section style="flex: 1 1 320px; padding: 40px 32px; background: linear-gradient(135deg,#f8f8f8 80%,#e3e3e3 100%); display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+        <h1 style="font-family: 'Montserrat',sans-serif; font-size: 2.2rem; margin-bottom: 8px; color: #222;">Contáctanos</h1>
+        <p style="font-size: 1.1rem; color: #444; margin-bottom: 16px;">¿Tienes preguntas o sugerencias? Envíanos un mensaje y te responderemos lo antes posible.</p>
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+          <span style="font-size: 2.2rem; color: #b6894a;"><i class="fas fa-map-marker-alt"></i></span>
+          <div>
+            <h3 style="margin: 0; font-size: 1.1rem; color: #222;">Visítanos</h3>
+            <p style="margin: 0; color: #555;">Av. Principal #123, Ciudad</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+          <span style="font-size: 2.2rem; color: #b6894a;"><i class="fas fa-phone"></i></span>
+          <div>
+            <h3 style="margin: 0; font-size: 1.1rem; color: #222;">Llámanos</h3>
+            <p style="margin: 0; color: #555;">+123 456 789</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+          <span style="font-size: 2.2rem; color: #b6894a;"><i class="fas fa-envelope"></i></span>
+          <div>
+            <h3 style="margin: 0; font-size: 1.1rem; color: #222;">Email</h3>
+            <p style="margin: 0; color: #555;">info@koucofe.com</p>
+          </div>
+        </div>
+        <div style="margin-top: 18px; display: flex; gap: 18px;">
+          <a href="https://instagram.com/koucofe" target="_blank" style="color:#b6894a; font-size:2rem;"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/koucofe" target="_blank" style="color:#b6894a; font-size:2rem;"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/koucofe" target="_blank" style="color:#b6894a; font-size:2rem;"><i class="fab fa-twitter"></i></a>
+        </div>
+      </section>
+      <!-- Formulario de contacto -->
+      <section style="flex: 1 1 320px; padding: 40px 32px; background: #fff; display: flex; flex-direction: column; justify-content: center;">
+        <h2 style="font-family: 'Montserrat',sans-serif; font-size: 1.5rem; color: #222; margin-bottom: 18px;">Envíanos un mensaje</h2>
+        <form id="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <input type="text" name="name" placeholder="Nombre completo" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem;">
+          <input type="email" name="email" placeholder="Correo electrónico" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem;">
+          <select name="subject" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem;">
+            <option value="">Selecciona un tema</option>
+            <option value="productos">Información de productos</option>
+            <option value="pedidos">Estado de pedidos</option>
+            <option value="ventas">Ventas al mayor</option>
+            <option value="otro">Otro</option>
+          </select>
+          <textarea name="message" rows="5" placeholder="Escribe tu mensaje" required style="padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem;"></textarea>
+          <button type="submit" style="background: linear-gradient(90deg,#b6894a,#e3b97b); color: #fff; font-weight: bold; border: none; border-radius: 8px; padding: 14px 0; font-size: 1.1rem; cursor: pointer; box-shadow: 0 2px 8px rgba(182,137,74,0.12); transition: background 0.2s;">Enviar mensaje</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: #000; color: #fff; padding: 40px 20px; font-family: 'Inter', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+      <!-- Información de contacto -->
+      <div style="flex: 1; min-width: 250px;">
+        <h3 style="margin-bottom: 10px; font-size: 24px;">KOU COFE</h3>
+        <p>El arte del café en tus manos</p>
+        <p>Ubicación: Calle Principal #123</p>
+        <p>Ciudad, País</p>
+        <p>Tel: +123 456 789</p>
+        <p>Horario: L-V 7:00-20:00 | S-D 8:00-19:00</p>
+      </div>
+
+      <!-- Menú -->
+      <div style="flex: 1; min-width: 150px;">
+        <h4 style="margin-bottom: 10px;">Menú</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="index.html" style="color: #fff; text-decoration: none;">Inicio</a></li>
+          <li><a href="tienda.html" style="color: #fff; text-decoration: none;">Tienda</a></li>
+          <li><a href="contacto.html" style="color: #fff; text-decoration: none;">Contacto</a></li>
+        </ul>
+      </div>
+
+      <!-- Contacto / Redes -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4 style="margin-bottom: 10px;">Contáctanos</h4>
+        <p>Email: <a href="mailto:info@koucofe.com" style="color: #fff; text-decoration: none;">info@koucofe.com</a></p>
+        <div style="margin-top: 10px; display: flex; gap: 15px; font-size: 24px;">
+          <a href="https://facebook.com/koucofe" target="_blank" style="color: #fff;"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://instagram.com/koucofe" target="_blank" style="color: #fff;"><i class="fab fa-instagram"></i></a>
+          <a href="https://twitter.com/koucofe" target="_blank" style="color: #fff;"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px; font-size: 14px; color: #ccc;">
+      © 2025 KOU COFE. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script src="./js/script.js" defer></script>
+</body>
+</html>
